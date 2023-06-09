@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MyNavbar />
+    <MyMain @progressUpdate="setProgress" />
+    <ProgressBar :progress="progress" />
+    <MyFooter />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyNavbar from './components/MyNavbar.vue'
+import MyMain from './components/MyMain.vue'
+import ProgressBar from './components/ScrollBar.vue'
+import MyFooter from './components/MyFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MyNavbar,
+    MyMain,
+    ProgressBar,
+    MyFooter
+  },
+  data() {
+    return {
+      progress: 0
+    }
+  },
+  methods: {
+    setProgress(progress) {
+      this.progress = progress;
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+@import'~bootstrap/dist/css/bootstrap.css';
 </style>
